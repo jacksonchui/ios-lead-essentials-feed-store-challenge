@@ -9,7 +9,7 @@
 import CoreData
 
 @objc(ManagedCache)
-internal class ManagedCache: NSManagedObject {
+final internal class ManagedCache: NSManagedObject {
 	@NSManaged var timestamp: Date
 	@NSManaged var feed: NSOrderedSet
 
@@ -30,7 +30,7 @@ internal class ManagedCache: NSManagedObject {
 		feedCache.feed = ManagedCache.map(feed, in: context)
 	}
 
-	internal static func map(_ local: [LocalFeedImage], in context: NSManagedObjectContext) -> NSOrderedSet {
+	static func map(_ local: [LocalFeedImage], in context: NSManagedObjectContext) -> NSOrderedSet {
 		return NSOrderedSet(array: local.map { local in
 			let managed = ManagedFeedImage(context: context)
 			managed.id = local.id
