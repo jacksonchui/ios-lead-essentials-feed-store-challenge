@@ -50,15 +50,7 @@ public final class CoreDataFeedStore: FeedStore {
 				try ManagedCache.delete(in: context)
 				let feedCache = ManagedCache(context: context)
 				feedCache.timestamp = timestamp
-				feedCache.feed = NSOrderedSet(array: feed.map { local in
-					let managed = ManagedFeedImage(context: context)
-					managed.id = local.id
-					managed.imageDescription = local.description
-					managed.location = local.location
-					managed.url = local.url
-					return managed
-				}
-				)
+				feedCache.feed = ManagedCache.map(feed, in: context)
 				try context.save()
 				completion(nil)
 			} catch {
