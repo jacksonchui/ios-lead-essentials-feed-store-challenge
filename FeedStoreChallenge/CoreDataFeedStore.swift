@@ -47,10 +47,7 @@ public final class CoreDataFeedStore: FeedStore {
 		let context = self.context
 		context.perform {
 			do {
-				try ManagedCache.delete(in: context)
-				let feedCache = ManagedCache(context: context)
-				feedCache.timestamp = timestamp
-				feedCache.feed = ManagedCache.map(feed, in: context)
+				try ManagedCache.replaceCurrentFeedIfPresent(with: feed, at: timestamp, in: context)
 				try context.save()
 				completion(nil)
 			} catch {

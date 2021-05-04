@@ -22,8 +22,15 @@ internal class ManagedCache: NSManagedObject {
 	static func delete(in context: NSManagedObjectContext) throws {
 		try ManagedCache.find(in: context).map(context.delete)
 	}
-	
-	static func map(_ local: [LocalFeedImage], in context: NSManagedObjectContext) -> NSOrderedSet {
+
+	static func replaceCurrentFeedIfPresent(with feed: [LocalFeedImage], at timestamp: Date, in context: NSManagedObjectContext) throws {
+		try ManagedCache.delete(in: context)
+		let feedCache = ManagedCache(context: context)
+		feedCache.timestamp = timestamp
+		feedCache.feed = ManagedCache.map(feed, in: context)
+	}
+
+	internal static func map(_ local: [LocalFeedImage], in context: NSManagedObjectContext) -> NSOrderedSet {
 		return NSOrderedSet(array: local.map { local in
 			let managed = ManagedFeedImage(context: context)
 			managed.id = local.id
