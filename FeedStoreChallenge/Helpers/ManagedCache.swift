@@ -13,10 +13,14 @@ internal class ManagedCache: NSManagedObject {
 	@NSManaged var timestamp: Date
 	@NSManaged var feed: NSOrderedSet
 
-	static func find(context: NSManagedObjectContext) throws -> ManagedCache? {
+	static func find(in context: NSManagedObjectContext) throws -> ManagedCache? {
 		let request = NSFetchRequest<ManagedCache>(entityName: entity().name!)
 		request.returnsObjectsAsFaults = false
 		return try context.fetch(request).first
+	}
+
+	static func delete(in context: NSManagedObjectContext) throws {
+		try ManagedCache.find(in: context).map(context.delete)
 	}
 
 	var local: [LocalFeedImage] {

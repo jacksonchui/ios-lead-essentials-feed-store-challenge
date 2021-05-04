@@ -32,7 +32,7 @@ public final class CoreDataFeedStore: FeedStore {
 		let context = self.context
 		context.perform {
 			do {
-				if let data = try ManagedCache.find(context: context) {
+				if let data = try ManagedCache.find(in: context) {
 					completion(.found(feed: data.local, timestamp: data.timestamp))
 				} else {
 					completion(.empty)
@@ -47,7 +47,7 @@ public final class CoreDataFeedStore: FeedStore {
 		let context = self.context
 		context.perform {
 			do {
-				try ManagedCache.find(context: context).map(context.delete)
+				try ManagedCache.delete(in: context)
 				let feedCache = ManagedCache(context: context)
 				feedCache.timestamp = timestamp
 				feedCache.feed = NSOrderedSet(array: feed.map { local in
@@ -69,6 +69,14 @@ public final class CoreDataFeedStore: FeedStore {
 	}
 
 	public func deleteCachedFeed(completion: @escaping DeletionCompletion) {
-		completion(nil)
+		let context = self.context
+		context.perform {
+			do {
+				try ManagedCache.delete(in: context)
+				completion(nil)
+			} catch {
+				completion(error)
+			}
+		}
 	}
 }
