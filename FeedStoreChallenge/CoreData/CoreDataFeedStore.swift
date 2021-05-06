@@ -48,7 +48,7 @@ public final class CoreDataFeedStore: FeedStore {
 		context.perform {
 			do {
 				try ManagedCache.replaceCurrentFeedIfPresent(with: feed, at: timestamp, in: context)
-				try context.save()
+				try context.saveChanges()
 				completion(nil)
 			} catch {
 				context.rollback()
@@ -62,7 +62,7 @@ public final class CoreDataFeedStore: FeedStore {
 		context.perform {
 			do {
 				try ManagedCache.delete(in: context)
-				try context.save()
+				try context.saveChanges()
 				completion(nil)
 			} catch {
 				context.rollback()
