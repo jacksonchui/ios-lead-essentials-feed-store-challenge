@@ -108,7 +108,7 @@
 		08CE2B8D2285BBD100183A1B /* FeedStoreChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				CF84774A2641FD580001FCCC /* Core Data */,
+				CF84774A2641FD580001FCCC /* CoreData */,
 				08CB21E1261638BA00751C29 /* Helpers */,
 				08CE2BA72285BCC600183A1B /* LocalFeedImage.swift */,
 				08CE2BA52285BCB600183A1B /* FeedStore.swift */,
@@ -151,14 +151,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		CF84774A2641FD580001FCCC /* Core Data */ = {
+		CF84774A2641FD580001FCCC /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				CF200B262641D9C600CB2992 /* ManagedCache.swift */,
 				CF200B282641DA7A00CB2992 /* ManagedFeedImage.swift */,
 				08F35C6E261612AE00AFE277 /* CoreDataFeedStore.swift */,
 			);
-			path = "Core Data";
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
