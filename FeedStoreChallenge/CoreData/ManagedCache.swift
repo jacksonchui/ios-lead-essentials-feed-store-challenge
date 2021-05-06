@@ -19,12 +19,12 @@ final class ManagedCache: NSManagedObject {
 		return try context.fetch(request).first
 	}
 
-	static func delete(in context: NSManagedObjectContext) throws {
+	static func deleteIfStored(in context: NSManagedObjectContext) throws {
 		try ManagedCache.find(in: context).map(context.delete)
 	}
 
 	static func createNewOrUpdateStoredFeed(with feed: [LocalFeedImage], at timestamp: Date, in context: NSManagedObjectContext) throws {
-		try ManagedCache.delete(in: context)
+		try ManagedCache.deleteIfStored(in: context)
 		let feedCache = ManagedCache(context: context)
 		feedCache.timestamp = timestamp
 		feedCache.feed = ManagedCache.map(feed, in: context)
