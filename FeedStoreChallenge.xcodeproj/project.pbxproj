@@ -112,7 +112,6 @@
 				08CB21E1261638BA00751C29 /* Helpers */,
 				08CE2BA72285BCC600183A1B /* LocalFeedImage.swift */,
 				08CE2BA52285BCB600183A1B /* FeedStore.swift */,
-				CF200B2A2641DAA400CB2992 /* FeedStore.xcdatamodeld */,
 				08CE2B8F2285BBD100183A1B /* Info.plist */,
 			);
 			path = FeedStoreChallenge;
@@ -157,6 +156,7 @@
 				CF200B262641D9C600CB2992 /* ManagedCache.swift */,
 				CF200B282641DA7A00CB2992 /* ManagedFeedImage.swift */,
 				08F35C6E261612AE00AFE277 /* CoreDataFeedStore.swift */,
+				CF200B2A2641DAA400CB2992 /* FeedStore.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
