@@ -23,7 +23,7 @@ final class ManagedCache: NSManagedObject {
 		try ManagedCache.find(in: context).map(context.delete)
 	}
 
-	static func replaceCurrentFeedIfPresent(with feed: [LocalFeedImage], at timestamp: Date, in context: NSManagedObjectContext) throws {
+	static func createNewOrUpdateStoredFeed(with feed: [LocalFeedImage], at timestamp: Date, in context: NSManagedObjectContext) throws {
 		try ManagedCache.delete(in: context)
 		let feedCache = ManagedCache(context: context)
 		feedCache.timestamp = timestamp
