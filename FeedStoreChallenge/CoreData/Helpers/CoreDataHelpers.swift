@@ -26,11 +26,3 @@ extension NSManagedObjectModel {
 		self.init(contentsOf: momd)
 	}
 }
-
-extension NSManagedObjectContext {
-	func saveChanges() throws {
-		if hasChanges {
-			try save()
-		}
-	}
-}
