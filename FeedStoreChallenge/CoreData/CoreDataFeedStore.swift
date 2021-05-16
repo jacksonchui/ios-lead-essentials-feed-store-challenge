@@ -48,9 +48,7 @@ public final class CoreDataFeedStore: FeedStore {
 		context.perform {
 			do {
 				try ManagedCache.createNewOrUpdateStoredFeed(with: feed, at: timestamp, in: context)
-				if context.hasChanges {
-					try context.save()
-				}
+				try context.save()
 				completion(nil)
 			} catch {
 				context.rollback()
